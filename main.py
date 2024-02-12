@@ -1,9 +1,8 @@
 import controller
-
+import model
 if __name__ == "__main__":
-    start = controller.Valid_class()
-
-    print(start.is_valid_gender())
+    start = model.Create_user()
+    print(start.create_user())
 
 # TEST valid user
 # Lipkin Vladislav Alexandrovich 30.09.1993 89046058127 M
