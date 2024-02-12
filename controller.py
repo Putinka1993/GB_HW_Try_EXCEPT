@@ -53,16 +53,20 @@ class Valid_class:
     def is_valid_gender(self):
         valid_row = self.is_valid_phone()
         phone = valid_row[5].lower()
-        while True:
+        flag = True
+        while flag:
             try:
-                if phone != "m" or phone != "f":
-                    print(valid_row[5])
-                    raise Exception
-            except Exception as v:
-                print(v)
-                print('Ошибка ввода гендера: ')
-                phone = input("Введите заново  значения гендера в виде 'f' или 'm'  ")
+                if phone != "f" or phone != "m":
+                    print('IS NOT VALID DATA!')
+                    raise Exception("Неверно указаны данные! ведите значения заново")
+                else:
+                    flag = False
+            except Exception as e:
+                print(e)
+                phone = input("Введите новые данные о гендере: ")
                 valid_row[5] = phone
+
+        return valid_row
 
 class Start_row:
     def __init__(self):
