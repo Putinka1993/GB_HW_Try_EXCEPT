@@ -1,4 +1,4 @@
-from datetime import date, time
+from datetime import date
 import user
 class Valid_class:
 
@@ -18,24 +18,51 @@ class Valid_class:
             return self.is_valid_row()
 
     def is_valid_row(self):
-        valid_row = self.name.get_row()
-        return valid_row.split()
+        valid_row = self.name.get_row().split()
+        return valid_row
 
     def is_valid_date(self):
-        birthday = self.is_valid_row()[3].split('.')
-        # print(birthday)
-        # day, month, year = birthday[0], birthday[1], birthday[2]
-        # print(int(day), int(month), int(year))
-        try:
-            year, month, day = birthday[0], birthday[1], birthday[2]
-            my_date = date(int(day), int(month), int(year))
-            print(my_date)
-        except ValueError:
-            print('Ошибка ввода')
-        else:
-            print(birthday)
-        my_date = date(int(day), int(month), int(year))
+        valid_row = self.is_valid_row()
+        while True:
+            try:
+                birthday = valid_row[3].split('.')
+                year, month, day = birthday[0], birthday[1], birthday[2]
+                my_date = date(int(day), int(month), int(year))
+                valid_row[3] = my_date.strftime('%d.%m.%Y')
+                break
+            except ValueError as v:
+                print(v)
+                print('Ошибка ввода')
+                valid_row[3] = input("Введите новую дату: ")
 
+        return valid_row
+
+    def is_valid_phone(self):
+        valid_row = self.is_valid_date()
+        while True:
+            try:
+                valid_row[4] = int(valid_row[4])
+                break
+            except ValueError as v:
+                print(v)
+                print('Ошибка ввода телефонного номера')
+                valid_row[4] = input("Введите заново телефонный номер: ")
+
+        return valid_row
+
+    def is_valid_gender(self):
+        valid_row = self.is_valid_phone()
+        phone = valid_row[5].lower()
+        while True:
+            try:
+                if phone != "m" or phone != "f":
+                    print(valid_row[5])
+                    raise Exception
+            except Exception as v:
+                print(v)
+                print('Ошибка ввода гендера: ')
+                phone = input("Введите заново  значения гендера в виде 'f' или 'm'  ")
+                valid_row[5] = phone
 
 class Start_row:
     def __init__(self):

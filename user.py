@@ -12,16 +12,3 @@ class input_user_information:
 
     def get_row(self):
         return self.user
-
-
-# result = ""
-# try:
-#     if not result:
-#         raise Exception("File is empty")
-#
-# # except IOError as e:
-# #     result = []
-# except Exception as e:
-#     result = input("Введите новые значения: ")
-#     print(e)
-#     print(result)
